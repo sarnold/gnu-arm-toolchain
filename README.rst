@@ -34,17 +34,29 @@ Rpi2/3 (Raspbian) works, but is slow and will crater with more than one job (eve
 
 A Samsung (snow) chromebook running chrubuntu also works, and should take -j2. Note this should work without any swap, as wily has the buggy version of swapon:
 
-$ time ./build-prerequisites.sh --skip_steps=mingw3
+3) Download the source tarball for the GNU ARM toolchain and unpack it.
 
-real    8m37.118s
-user    6m55.460s
-sys     1m8.600s
+  $ wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q3-update/+download/gcc-arm-none-eabi-5_4-2016q3-20160926-src.tar.bz2
+  $ tar xpf gcc-arm-none-eabi-5_4-2016q3-20160926-src.tar.bz2
 
-$ time ./build-toolchain.sh --skip_steps=manual,mingw32
+4) Copy the ``*.sh`` files from this repo to the above unpacked source directory
 
-real    447m9.451s
-user    508m12.645s
-sys     103m57.105s
+  $ cd gnu-arm-toolchain/
+  $ cp ``*.sh`` ../gcc-arm-none-eabi-5_4-2016q3-20160926/
+  $ cd ../gcc-arm-none-eabi-5_4-2016q3-20160926/
+  
+  $ time ./build-prerequisites.sh --skip_steps=mingw3
+  
+  real    8m37.118s
+  user    6m55.460s
+  sys     1m8.600s
+  
+  $ time ./build-toolchain.sh --skip_steps=manual,mingw32
+  
+  real    447m9.451s
+  user    508m12.645s
+  sys     103m57.105s
+  
+  yay!
 
-yay!
-
+YMMV, it will take "forever" but should work on anything with at least 1GB of RAM and 32GB of rootfs/storage.  Stick with JOBS=1 on anything with less than 2GB RAM, which should allow -j2 or even 3.
