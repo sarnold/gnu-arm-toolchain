@@ -78,14 +78,14 @@ if [ $# -gt 3 ] ; then
     usage
 fi
 
-skip_mingw32=no
+skip_mingw32=yes
 DEBUG_BUILD_OPTIONS=
 is_ppa_release=no
 is_native_build=yes
-skip_manual=no
+skip_manual=yes
 skip_steps=
 skip_gdb_with_python=no
-skip_mingw32_gdb_with_python=no
+skip_mingw32_gdb_with_python=yes
 build_type=
 build_tools=
 

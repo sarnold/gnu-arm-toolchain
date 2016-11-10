@@ -337,10 +337,20 @@ BUGURL=""
 uname_string=`uname | sed 'y/LINUXDARWIN/linuxdarwin/'`
 host_arch=`uname -m | sed 'y/XI/xi/'`
 if [ "x$uname_string" == "xlinux" ] ; then
-    BUILD="$host_arch"-linux-gnu
-    HOST_NATIVE="$host_arch"-linux-gnu
+    if [ "x$host_arch" == "xarmv7l" ] ; then
+        # debian and ubuntu armhf triplet
+        BUILD="arm-linux-gnueabihf"
+        HOST_NATIVE="arm-linux-gnueabihf"
+        # rpi3 and some others will crater with -j2 or higher
+        #JOBS=1
+        # chromebooks (snow and nyan K1) are heftier
+        JOBS=2
+    else
+        BUILD="$host_arch"-linux-gnu
+        HOST_NATIVE="$host_arch"-linux-gnu
+        JOBS=`grep ^processor /proc/cpuinfo|wc -l`
+    fi
     READLINK=readlink
-    JOBS=`grep ^processor /proc/cpuinfo|wc -l`
     GCC_CONFIG_OPTS_LCPP="--with-host-libstdcxx=-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm"
     TAR=tar
     MD5="md5sum -b"
