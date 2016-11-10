@@ -34,12 +34,12 @@ Rpi2/3 (Raspbian) works, but is slow and will crater with more than one job (eve
 
 A Samsung (snow) chromebook running chrubuntu also works, and should take -j2. Note this should work without any swap, as wily has the buggy version of swapon:
 
-3) Download the source tarball for the GNU ARM toolchain and unpack it.
+Download the source tarball for the GNU ARM toolchain and unpack it::
 
   $ wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q3-update/+download/gcc-arm-none-eabi-5_4-2016q3-20160926-src.tar.bz2
   $ tar xpf gcc-arm-none-eabi-5_4-2016q3-20160926-src.tar.bz2
 
-4) Copy the ``*.sh`` files from this repo to the above unpacked source directory
+Now copy the ``*.sh`` files from this repo to the above unpacked source directory::
 
   $ cd gnu-arm-toolchain/
   $ cp ``*.sh`` ../gcc-arm-none-eabi-5_4-2016q3-20160926/
