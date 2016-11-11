@@ -39,6 +39,10 @@ Download the source tarball for the GNU ARM toolchain and unpack it::
   $ wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q3-update/+download/gcc-arm-none-eabi-5_4-2016q3-20160926-src.tar.bz2
   $ tar xpf gcc-arm-none-eabi-5_4-2016q3-20160926-src.tar.bz2
 
+.. warning:: If building on rpi or other limited platform, edit build_common.sh
+             before you start - comment out JOBS=2 and uncomment JOBS=1 near the
+             bottom of the file (see comments).
+
 Now copy the ``*.sh`` files from this repo to the above unpacked source directory::
 
   $ cd gnu-arm-toolchain/
