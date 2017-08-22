@@ -250,9 +250,9 @@ SRCDIR=$ROOT/src
 BUILDDIR_NATIVE=$ROOT/build-native
 BUILDDIR_MINGW=$ROOT/build-mingw
 INSTALLDIR_NATIVE=$ROOT/install-native
-INSTALLDIR_NATIVE_DOC=$ROOT/install-native/share/doc/gcc-arm-none-eabi
+INSTALLDIR_NATIVE_DOC=$ROOT/install-native/share/doc/gcc-$TARGET
 INSTALLDIR_MINGW=$ROOT/install-mingw
-INSTALLDIR_MINGW_DOC=$ROOT/install-mingw/share/doc/gcc-arm-none-eabi
+INSTALLDIR_MINGW_DOC=$ROOT/install-mingw/share/doc/gcc-$TARGET
 
 PACKAGEDIR=$ROOT/pkg
 
@@ -328,8 +328,9 @@ GCC_CONFIG_OPTS=
 GDB_CONFIG_OPTS=
 NEWLIB_CONFIG_OPTS=
 
-
-PKGVERSION="GNU Tools for ARM Embedded Processors"
+if [ "$TARGET" == "arm-none-eabi" ] ; then
+    PKGVERSION="GNU Tools for ARM Embedded Processors"
+fi
 BUGURL=""
 
 # Set variables according to real environment to make this script can run
@@ -378,4 +379,3 @@ PACKAGE_NAME_MINGW=$PACKAGE_NAME-win32
 INSTALL_PACKAGE_NAME=gcc-$TARGET-$GCC_VER_NAME-$RELEASEVER
 INSTALLBASE="GNU Tools ARM Embedded"
 APPNAME="$PKGVERSION $GCC_VER_SHORT $release_year"
-
